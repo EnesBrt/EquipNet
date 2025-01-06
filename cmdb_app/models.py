@@ -11,9 +11,11 @@ class NetworkEquipment(models.Model):
     device_name = models.CharField(max_length=100, unique=True)
     device_type = models.CharField(max_length=50)
     ip_address = models.GenericIPAddressField(unique=True)
+    host = models.CharField(max_length=100, null=True)
     username = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
+    port = models.IntegerField(null=True)
 
     # Status of the equipment
     STATUS_CHOICES = [
