@@ -28,3 +28,8 @@ class Network:
             else:
                 equipment.status = "Inactif"
             equipment.save()
+
+
+if __name__ == "__main__":
+    network = Network()
+    network.device_connection()
