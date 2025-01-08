@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}My Site{% endblock %}</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        {{ form_login.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

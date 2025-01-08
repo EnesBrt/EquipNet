@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+{% block title %} Dashboard {% endblock %}
+
+{% block content %}
+    <table>
+        <tbody>
+            {% for equipment in equipments %}
+                <tr>
+                    <td>{{ equipment.name }}</td>
+                    <td>{{ equipment.device_type }}</td>
+                    <td>{{ equipment.ip_address }}</td>
+                    <td>{{ equipment.location }}</td>
+                    <td>{{ equipment.status }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if equipments %}
+        <p>Equipements trouvés: {{ equipments.count }}</p>
+    {% else %}
+        <p>Aucun équipement trouvé.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>{% block title %}add equipment{% endblock %}</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        {{ add_equipment_form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

@@ -1,13 +1,14 @@
 from netmiko import ConnectHandler
 from cmdb_app.models import NetworkEquipment
+from django.core.management.base import BaseCommand
 
 
-class Network:
+class Command(BaseCommand):
     """
     Collect equipment data from the database and connect to check if the equipments are active or not.
     """
 
-    def device_connection(self, *args, **kwargs):
+    def handle(self, *args, **kwargs):
         # Retrieve all the equipments from the database
         for equipment in NetworkEquipment.objects.all():
             device = {
@@ -28,8 +29,3 @@ class Network:
             else:
                 equipment.status = "Inactif"
             equipment.save()
-
-
-if __name__ == "__main__":
-    network = Network()
-    network.device_connection()
