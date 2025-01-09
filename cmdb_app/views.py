@@ -68,7 +68,7 @@ def update_equipment(request, id):
         else:
             messages.error(request, "There was an error updating the equipment")
     else:
-        update_form = AddEquipmentForm()
+        update_form = AddEquipmentForm(instance=equipment)
     return render(
         request,
         "update_equipment.html",
