@@ -1,0 +1,11 @@
+{% block content %}
+<h1>Update Equipment</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ update_form.as_p }}
+    <button type="submit">Update</button>
+</form>
+
+
+{% endblock %}

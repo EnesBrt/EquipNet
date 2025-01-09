@@ -3,6 +3,7 @@
 {% block title %} Dashboard {% endblock %}
 
 {% block content %}
+    <a href="{% url 'add_equipment' %}">Add equipment</a>
     <table>
         <tbody>
             {% for equipment in equipments %}
@@ -12,6 +13,16 @@
                     <td>{{ equipment.ip_address }}</td>
                     <td>{{ equipment.location }}</td>
                     <td>{{ equipment.status }}</td>
+                    {% if equipments %}
+                        <td><a href="{% url 'equipment_detail' id=equipment.id %}">detail</a></td>
+                        <td><a href="{% url 'update_equipment' id=equipment.id %}">update</a></td>
+                        <td>
+                            <form method="post" action="{% url 'delete_equipment' pk=equipment.pk %}" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet équipement ?');">Supprimer</button>
+                            </form>
+                        </td>
+                    {% endif %}
                 </tr>
             {% endfor %}
         </tbody>

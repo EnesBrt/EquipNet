@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Equipment detail{% endblock %}</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Device Name</th>
+                <th>Device Type</th>
+                <th>Host</th>
+                <th>Location</th>
+                <th>Port</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ device_name }}</td>
+                <td>{{ device_type }}</td>
+                <td>{{ host }}</td>
+                <td>{{ location }}</td>
+                <td>{{ port }}</td>
+                <td>{{ status }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

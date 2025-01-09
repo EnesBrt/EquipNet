@@ -8,18 +8,6 @@ class NetworkEquipment(models.Model):
     """
 
     # Basic information about the equipment
-    from django.db import models
-
-
-from django.contrib.auth.models import User
-
-
-class NetworkEquipment(models.Model):
-    """
-    Represents a piece of network equipment with basic information and status.
-    """
-
-    # Basic information about the equipment
     device_name = models.CharField(max_length=100, unique=True)
     device_type = models.CharField(max_length=50)
     ip_address = models.CharField(unique=True)
