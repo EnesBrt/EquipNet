@@ -80,7 +80,7 @@ DATABASES = {
         "NAME": "cmdb",
         "USER": "enesbarut",
         "PASSWORD": "barut_admin",
-        "HOST": "localhost",  # or your database host
+        "HOST": "db",  # or your database host
         "PORT": "5432",  # default PostgreSQL port
     }
 }

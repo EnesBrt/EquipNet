@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"  # Django
+      - "8001:8001"  # FastAPI
+    volumes:
+      - ./CMDB:/app/CMDB
+      - ./cmdb_app:/app/cmdb_app
+      - ./fast_api:/app/fast_api
+    depends_on:
+      - db
+    environment:
+      - DEBUG=1
+      - SECRET_KEY='django-insecure-9_@o8+=^dqs2x$boa__ys7h9kolfic!w*sy6d2s&b&vwos1-u_'
+      - DATABASE_URL=postgres://enesbarut:barut_admin@db:5432/cmdb
+
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=enesbarut
+      - POSTGRES_PASSWORD=barut_admin
+      - POSTGRES_DB=cmdb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
