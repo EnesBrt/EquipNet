@@ -9,22 +9,25 @@ from django.contrib import messages
 def register(request):
     if request.method == "POST":
         form_register = RegisterForm(request.POST)
-        if form.is_valid():
+        if form_register.is_valid():
             user = form_register.save()
             login(request, user)
             return redirect("login_page")
     else:
         form_register = RegisterForm()
-    return render(request, "login_page.html", {"form_register": form_register})
+    return render(request, "register.html", {"form_register": form_register})
 
 
 def login_page(request):
     if request.method == "POST":
-        form_login = AuthenticationForm(request.POST)
+        form_login = AuthenticationForm(request, data=request.POST)
         if form_login.is_valid():
             user = form_login.get_user()
             login(request, user)
+            messages.success(request, "Successfully logged in.")
             return redirect("dashboard")
+        else:
+            messages.error(request, "Login failed. Please check your credentials.")
     else:
         form_login = AuthenticationForm()
     return render(request, "login_page.html", {"form_login": form_login})

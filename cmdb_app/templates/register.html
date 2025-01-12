@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Register{% endblock %}</title>
+</head>
+<body>
+    <h2>Register</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form_register.as_p }}
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>

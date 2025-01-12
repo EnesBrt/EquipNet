@@ -25,6 +25,8 @@ def root():
                 "device_name": equipment.device_name,
                 "device_type": equipment.device_type,
                 "host": equipment.host,
+                "status": equipment.status,
+                "location": equipment.location,
             }
         )
     return result
@@ -36,7 +38,7 @@ class Update(BaseModel):
 
 @app.put("/equipment/{equipment_id}/location")
 def update(equipment_id: int, new_data: Update):
-    equipment = NetworkEquipment.objects.get(equipment_id=id)
+    equipment = NetworkEquipment.objects.get(id=equipment_id)
     equipment.location = new_data.new_location
     equipment.save()
     return {
