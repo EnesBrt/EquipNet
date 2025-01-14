@@ -4,6 +4,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from .forms import RegisterForm, AddEquipmentForm
 from .models import NetworkEquipment
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 def register(request):
@@ -38,12 +39,14 @@ def logout(request):
     return redirect("login_page")
 
 
+@login_required
 def dashboard(request):
     equipments = NetworkEquipment.objects.all()
 
     return render(request, "dashboard.html", {"equipments": equipments})
 
 
+@login_required
 def add_equimpent(request):
     if request.method == "POST":
         add_equimpent_form = AddEquipmentForm(request.POST)
@@ -60,6 +63,7 @@ def add_equimpent(request):
     )
 
 
+@login_required
 def update_equipment(request, id):
     equipment = NetworkEquipment.objects.get(id=id)
     if request.method == "POST":
@@ -79,6 +83,7 @@ def update_equipment(request, id):
     )
 
 
+@login_required
 def delete_equipment(request, pk):
     equipment = NetworkEquipment.objects.get(pk=pk)
     if request.method == "POST":
@@ -88,6 +93,7 @@ def delete_equipment(request, pk):
         return redirect("dashboard")
 
 
+@login_required
 def equipment_details(request, id):
     details = NetworkEquipment.objects.get(id=id)
 
