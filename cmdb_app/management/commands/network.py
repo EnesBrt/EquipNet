@@ -29,3 +29,5 @@ class Command(BaseCommand):
             else:
                 equipment.status = "Inactif"
             equipment.save()
+
+            print("the script executed successfuly")

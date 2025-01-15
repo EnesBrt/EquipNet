@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "cmdb_app",
+    "widget_tweaks",
 ]
 
 MIDDLEWARE = [
@@ -81,7 +82,7 @@ DATABASES = {
         "NAME": "cmdb",
         "USER": "enesbarut",
         "PASSWORD": "barut_admin",
-        "HOST": "db",
+        "HOST": "localhost",
         "PORT": "5432",
     }
 }
@@ -123,7 +124,7 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "cmdb_app/static"),
 ]
 
 # Default primary key field type
@@ -132,5 +133,5 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # In settings.py
-CELERY_BROKER_URL = "redis://localhost:6379/0"
+CELERY_BROKER_URL = "redis://db:6379/0"
 CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True

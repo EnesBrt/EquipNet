@@ -14,11 +14,12 @@ services:
       - ./fast_api:/app/fast_api
     depends_on:
       - db
+      - redis
     environment:
       - DEBUG=1
       - SECRET_KEY='django-insecure-9_@o8+=^dqs2x$boa__ys7h9kolfic!w*sy6d2s&b&vwos1-u_'
       - DATABASE_URL=postgres://enesbarut:barut_admin@db:5432/cmdb
-
+      - CELERY_BROKER_URL=redis://redis:6379/0
   db:
     image: postgres:13
     environment:
@@ -27,6 +28,11 @@ services:
       - POSTGRES_DB=cmdb
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
 
 volumes:
   postgres_data:
