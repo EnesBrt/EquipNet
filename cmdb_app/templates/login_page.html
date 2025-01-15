@@ -1,41 +1,36 @@
 <!DOCTYPE html>
-<html>
+{% load static %}
+<html lang="en">
 <head>
-    <title>{% block title %}My Site{% endblock %}</title>
-    <style>
-        body { font-family: sans-serif; background-color: #f8f8f8; }
-        form { max-width: 400px; margin: 0 auto; padding: 20px; background: #fff; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        label { display: block; margin-bottom: 5px; color: #4a5568; }
-        input[type="text"], input[type="password"] { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #e2e8f0; border-radius: 5px; }
-        button { width: 100%; padding: 10px; background-color: #3182ce; color: white; border: none; border-radius: 5px; cursor: pointer; }
-        button:hover { background-color: #2b6cb0; }
-        .messages { list-style-type: none; padding: 0; }
-        .messages li { padding: 10px; margin: 10px 0; border-radius: 4px; }
-        .messages li.error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
-        .messages li.success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/output.css' %}">
 </head>
+
 <body>
-    <div class="bg-gray-50 font-[sans-serif]">
-        <div class="min-h-screen flex flex-col items-center justify-center py-6 px-4">
-            <div class="max-w-md w-full">
-                <form method="post" class="p-8 rounded-2xl bg-white shadow">
-                    {% csrf_token %}
-                    {{ form_login.as_p }}
-                    <button type="submit" class="w-full py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">Submit</button>
-                </form>
-
-                {% if messages %}
-                <ul class="messages">
-                    {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-
-                <p class="text-gray-800 text-sm mt-8 text-center">Not registered yet? <a href="{% url 'register' %}" class="text-blue-600 hover:underline ml-1 whitespace-nowrap font-semibold">Register</a></p>
+    <div class="flex content-center">
+        <form method="post">
+            {% csrf_token %}
+            <div>
+                <div>
+                    <label for="id_username">Username</label>
+                    {{ form_login.username }}
+                </div>
+                <div>
+                    <label for="id_password">Password</label>
+                    {{ form_login.password }}
+                </div>
             </div>
-        </div>
+            
+            <button type="submit">
+                Submit
+            </button>
+        </form>
+        
+        <a>
+            Not registered yet? <a href="{% url 'register' %}">Register</a>
+        </a>
     </div>
 </body>
 </html>

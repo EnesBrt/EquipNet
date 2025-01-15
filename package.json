@@ -1,6 +1,16 @@
 {
-  "dependencies": {
-    "@fullhuman/postcss-purgecss": "^7.0.2",
+  "name": "cmbd",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tailwindcss -i ./cmdb_app/static/css/input.css -o ./cmdb_app/static/css/output.css --minify"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
     "autoprefixer": "^10.4.20",
     "postcss": "^8.5.1",
     "tailwindcss": "^3.4.17"
