@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ["*", ".vercel.app", ".now.sh"]
 # Application definition
 
 INSTALLED_APPS = [
-    "django.contrib.admin",
+    "whitenoise.runsever_nostatic" "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMdiddlware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",

@@ -1,9 +1,15 @@
+
+
 {
-    "version": 2,
-    "builds": [
-      { "src": "cmdb/wsgi.py", "use": "@vercel/python" }
-    ],
+    "builds": [{
+        "src": "cndb/wsgi.py",
+        "use": "@vercel/python",
+        "config": { "maxLambdaSize": "15mb", "runtime": "python3.9.12" }
+    }],
     "routes": [
-      { "src": "/(.*)", "dest": "cmdb/wsgi.py" }
+        {
+        "src": "/(.*)",
+        "dest": "cmdb/wsgi.py"
+        }
     ]
-  }
+}
