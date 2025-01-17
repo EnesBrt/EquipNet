@@ -26,7 +26,7 @@ class NetworkEquipment(models.Model):
     status = models.CharField(
         max_length=20,
         choices=STATUS_CHOICES,
-        default="inactif",
+        default="inactive",
     )
 
     # Timestamp for when the equipment was added or last updated
