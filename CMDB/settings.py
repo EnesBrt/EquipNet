@@ -81,16 +81,26 @@ WSGI_APPLICATION = "CMDB.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "cmdb",
-        "USER": "enesbarut",
-        "PASSWORD": "barut_admin",
-        "HOST": "localhost",
-        "PORT": "5432",
+if not DEBUG:  # Si DEBUG est False, nous sommes en production
+    import dj_database_url
+
+    DATABASES = {
+        "default": dj_database_url.config(
+            default="postgres://neondb_owner:KN9oQS1nfOGI@ep-steep-bonus-a2ysnnns-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require",
+            conn_max_age=600,  # Nombre de secondes avant que la connexion soit recyclée
+        )
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "cmdb",
+            "USER": "enesbarut",
+            "PASSWORD": "barut_admin",
+            "HOST": "localhost",
+            "PORT": "5432",
+        }
+    }
 
 
 # Password validation
