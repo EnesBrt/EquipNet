@@ -1,36 +1,104 @@
 <!DOCTYPE html>
 {% load static %}
+{% load custom_filters %}
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-{% load static %}
-<link rel="stylesheet" href="{% static 'css/output.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/login_page.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <style>
+        body {
+            background-color: #f0f2f5;
+        }
+        .login-box {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1), 0 8px 16px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+        .login-button {
+            background-color: #1877f2;
+            border-color: #1877f2;
+            color: white;
+        }
+        .login-button:hover {
+            background-color: #166fe5;
+            border-color: #166fe5;
+        }
+        .login-link {
+            color: #1877f2;
+        }
+        .login-link:hover {
+            text-decoration: underline;
+        }
+        /* Styles pour les inputs */
+        .input {
+            background-color: #f5f6f7;
+            border: 1px solid #ccd0d5;
+            border-radius: 6px;
+            height: 50px;  /* Augmentation de la hauteur */
+            padding: 12px 20px;  /* Augmentation du padding */
+            font-size: 18px;  /* Augmentation de la taille de la police */
+            margin-bottom: 15px;  /* Augmentation de l'espacement entre les inputs */
+        }
+        .input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(24, 119, 242, 0.4);  /* Augmentation de l'ombre */
+            border-color: #1877f2;
+        }
+        /* Ajout du logo de Facebook */
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo img {
+            max-width: 200px;
+        }
+        /* Style pour les labels */
+        .field label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 16px;  /* Augmentation de la taille de la police des labels */
+            color: #606770;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="flex content-center">
-        <form method="post">
-            {% csrf_token %}
-            <div>
-                <div>
-                    <label for="id_username">Username</label>
-                    {{ form_login.username }}
-                </div>
-                <div>
-                    <label for="id_password">Password</label>
-                    {{ form_login.password }}
+    <section class="hero is-fullheight">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns is-centered">
+                    <div class="column is-6-tablet is-5-desktop is-4-widescreen login-box">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="field">
+                                <label for="{{ form_login.username.id_for_label }}">Username</label>
+                                <div class="control">
+                                    {{ form_login.username|add_class:"input" }}
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label for="{{ form_login.password.id_for_label }}">Password</label>
+                                <div class="control">
+                                    {{ form_login.password|add_class:"input" }}
+                                </div>
+                            </div>
+                            <div class="field">
+                                <button type="submit" class="button is-fullwidth login-button" style="height: 50px; font-size: 18px;">
+                                    Log In
+                                </button>
+                            </div>
+                        </form>
+                        <hr>
+                        <p class="has-text-centered">
+                            <a href="{% url 'register' %}" class="button is-fullwidth is-primary" style="height: 50px; font-size: 18px;">Create New Account</a>
+                        </p>
+                    </div>
                 </div>
             </div>
-            
-            <button type="submit">
-                Submit
-            </button>
-        </form>
-        
-        <a>
-            Not registered yet? <a href="{% url 'register' %}">Register</a>
-        </a>
-    </div>
+        </div>
+    </section>
 </body>
 </html>

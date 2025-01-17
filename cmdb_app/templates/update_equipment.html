@@ -1,11 +1,26 @@
-{% block content %}
-<h1>Update Equipment</h1>
+{% extends "base.html" %}
 
-<form method="post">
-    {% csrf_token %}
-    {{ update_form.as_p }}
-    <button type="submit">Update</button>
-</form>
+{% block content %}
+<!DOCTYPE html>
+{% load static %}
+{% load custom_filters %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/login_page.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+</head>
+<body>
+    <h1>Update Equipment</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ update_form.as_p }}
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>
 
 
 {% endblock %}

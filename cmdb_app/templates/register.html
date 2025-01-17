@@ -1,14 +1,101 @@
 <!DOCTYPE html>
-<html>
+{% load static %}
+{% load custom_filters %}
+<html lang="en">
 <head>
-    <title>{% block title %}Register{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/login_page.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <style>
+        body {
+            background-color: #f0f2f5;
+        }
+        .register-box {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1), 0 8px 16px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+        .register-button {
+            background-color: #42b72a; /* Couleur verte de Facebook pour le bouton d'inscription */
+            border-color: #42b72a;
+            color: white;
+        }
+        .register-button:hover {
+            background-color: #36a420;
+            border-color: #36a420;
+        }
+        .input {
+            background-color: #f5f6f7;
+            border: 1px solid #ccd0d5;
+            border-radius: 6px;
+            height: 50px;
+            padding: 12px 20px;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        .input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(66, 183, 42, 0.4); /* Couleur d'ombre verte pour correspondre au bouton */
+            border-color: #42b72a;
+        }
+        .field label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 16px;
+            color: #606770;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo img {
+            max-width: 200px;
+        }
+
+        .title.is-black {  /* Ajout de cette règle pour le titre */
+            color: black;
+        }
+    </style>
 </head>
+
 <body>
-    <h2>Register</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form_register.as_p }}
-        <button type="submit">Register</button>
-    </form>
+    <section class="hero is-fullheight">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns is-centered">
+                    <div class="column is-6-tablet is-5-desktop is-4-widescreen register-box">
+                        <h2 class="title has-text-centered is-black">Create an Account</h2>
+                        <form method="post">
+                            {% csrf_token %}
+                            {% for field in form_register %}
+                                <div class="field">
+                                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                    <div class="control">
+                                        {{ field|add_class:"input" }}
+                                    </div>
+                                    {% if field.errors %}
+                                        <p class="help is-danger">
+                                            {{ field.errors }}
+                                        </p>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                            <div class="field">
+                                <button type="submit" class="button is-fullwidth register-button" style="height: 50px; font-size: 18px;">
+                                    Sign Up
+                                </button>
+                            </div>
+                        </form>
+                        <hr>
+                        <p class="has-text-centered">
+                            <a href="{% url 'login_page' %}" class="button is-fullwidth is-link">Already have an account? Log In</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

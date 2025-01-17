@@ -1,8 +1,15 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 
+{% block content %}
+<!DOCTYPE html>
+{% load static %}
+{% load custom_filters %}
 <html>
 <head>
-    <title>{% block title %}add equipment{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/login_page.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
 </head>
 <body>
     <form method="post">
@@ -12,3 +19,4 @@
     </form>
 </body>
 </html>
+{% endblock %}

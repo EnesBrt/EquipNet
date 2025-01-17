@@ -34,7 +34,7 @@ def login_page(request):
     return render(request, "login_page.html", {"form_login": form_login})
 
 
-def logout(request):
+def logout_view(request):
     logout(request)
     return redirect("login_page")
 

@@ -3,6 +3,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path("", views.login_page, name="login_page"),
+    path("logout/", views.logout_view, name="logout"),
     path("register/", views.register, name="register"),
     path("dashboard/", views.dashboard, name="dashboard"),
     path("add_equipment/", views.add_equimpent, name="add_equipment"),
