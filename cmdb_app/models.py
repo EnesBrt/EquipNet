@@ -19,8 +19,8 @@ class NetworkEquipment(models.Model):
 
     # Status of the equipment
     STATUS_CHOICES = [
-        ("actif", "Actif"),
-        ("inactif", "Inactif"),
+        ("active", "Active"),
+        ("inactive", "Inactive"),
     ]
 
     status = models.CharField(

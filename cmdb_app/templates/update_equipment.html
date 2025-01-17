@@ -8,19 +8,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/login_page.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <link rel="stylesheet" href="{% static 'css/bulma.min.css' %}">
+    <style>
+        body, html {
+            background-color: #f0f2f5;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 18px;
+        }
+        .update-equipment-box {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+            padding: 20px;
+            width: 600px;
+            margin: 0 auto;
+        }
+        .update-equipment-form {
+            margin-top: 20px;
+        }
+        .update-equipment-form .button {
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            width: 100%;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .update-equipment-form .button:hover {
+            background-color: #166fe5;
+        }
+        .field {
+            margin-bottom: 1rem;
+        }
+        .control .input, .control .select select {
+            border-radius: 6px;
+            border: 1px solid #dddfe2;
+            padding: 14px 16px;
+        }
+        .control .select::after {
+            border-color: #1877f2;
+        }
+    </style>
 </head>
 <body>
-    <h1>Update Equipment</h1>
-
-    <form method="post">
-        {% csrf_token %}
-        {{ update_form.as_p }}
-        <button type="submit">Update</button>
-    </form>
+    <section class="section">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-6">
+                    <div class="update-equipment-box">
+                        <h1 class="title has-text-centered">Modify equipement</h1>
+                        <form method="post" class="update-equipment-form">
+                            {% csrf_token %}
+                            {% for field in update_form %}
+                                <div class="field">
+                                    <label class="label">{{ field.label }}</label>
+                                    <div class="control">
+                                        {% if field.name == 'type' %}
+                                            <div class="select is-fullwidth">
+                                                {{ field | add_class:"select" }}
+                                            </div>
+                                        {% else %}
+                                            {{ field | add_class:"input" }}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <button type="submit" class="button is-large">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
-
-
 {% endblock %}

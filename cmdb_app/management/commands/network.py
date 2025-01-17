@@ -1,33 +1,43 @@
 from netmiko import ConnectHandler
 from cmdb_app.models import NetworkEquipment
 from django.core.management.base import BaseCommand
+import signal
+import time
+import sys
 
 
 class Command(BaseCommand):
-    """
-    Collect equipment data from the database and connect to check if the equipments are active or not.
-    """
 
     def handle(self, *args, **kwargs):
-        # Retrieve all the equipments from the database
-        for equipment in NetworkEquipment.objects.all():
-            device = {
-                "device_type": equipment.device_type,
-                "host": equipment.host,
-                "username": equipment.username,
-                "password": equipment.password,
-                "port": equipment.port,
-            }
+        help = "Runs a command to check network equipment status indefinitely"
 
-            # Equipment connection
-            net_connect = ConnectHandler(**device)
+        def signal_handler(sig, frame):
+            self.stdout.write(self.style.SUCCESS("Exiting gracefully"))
+            sys.exit(0)
 
-            # Check if equipment is active or not
-            version_output = net_connect.send_command("show version")
-            if "uptime is" in version_output:
-                equipment.status = "Actif"
-            else:
-                equipment.status = "Inactif"
-            equipment.save()
+            signal.signal(signal.SIGINT, signal_handler)
 
-            print("the script executed successfuly")
+            self.stdout.write("Press Ctrl+C to stop the program")
+
+            while True:
+
+                for equipment in NetworkEquipment.objects.all():
+                    device = {
+                        "device_type": equipment.device_type,
+                        "host": equipment.host,
+                        "username": equipment.username,
+                        "password": equipment.password,
+                        "port": equipment.port,
+                    }
+
+                    net_connect = ConnectHandler(**device)
+
+                    version_output = net_connect.send_command("show version")
+                    if "uptime is" in version_output:
+                        equipment.status = "Active"
+                    else:
+                        equipment.status = "Inactive"
+                    equipment.save()
+
+                self.stdout.write("Program is running...")
+                time.sleep(60)

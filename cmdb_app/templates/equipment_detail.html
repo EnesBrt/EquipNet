@@ -4,37 +4,92 @@
 <!DOCTYPE html>
 {% load static %}
 {% load custom_filters %}
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/login_page.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <link rel="stylesheet" href="{% static 'css/bulma.min.css' %}">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 18px;
+        }
+        .device-info-box {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+            padding: 20px;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table th, .table td {
+            border: none;
+            padding: 10px 15px;
+            text-align: left;
+        }
+        .table th {
+            background-color: #f5f6f7;
+            font-weight: bold;
+            color: #606770;
+        }
+        .table td {
+            color: #1c1e21;
+        }
+        .table tr:nth-child(even) {
+            background-color: #f7f8f9;
+        }
+        /* Utiliser flex pour s'assurer que le contenu s'étend jusqu'au bas de la page */
+        .section {
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
 </head>
 <body>
-    <table>
-        <thead>
-            <tr>
-                <th>Device Name</th>
-                <th>Device Type</th>
-                <th>Host</th>
-                <th>Location</th>
-                <th>Port</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{ device_name }}</td>
-                <td>{{ device_type }}</td>
-                <td>{{ host }}</td>
-                <td>{{ location }}</td>
-                <td>{{ port }}</td>
-                <td>{{ status }}</td>
-            </tr>
-        </tbody>
-    </table>
-
+    <section class="section">
+        <div class="container">
+            <div class="device-info-box">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Device Name</th>
+                            <th>Device Type</th>
+                            <th>Host</th>
+                            <th>Location</th>
+                            <th>Port</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ device_name }}</td>
+                            <td>{{ device_type }}</td>
+                            <td>{{ host }}</td>
+                            <td>{{ location }}</td>
+                            <td>{{ port }}</td>
+                            <td>{{ status }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
 {% endblock %}

@@ -11,8 +11,9 @@
     <link rel="stylesheet" href="css/login_page.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
     <style>
-        body {
+        body, html {
             background-color: #f0f2f5;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             font-size: 18px;
         }
         .dashboard-box {
@@ -141,7 +142,7 @@
             <div class="container">
                 <div class="columns is-centered">
                     <div class="column is-12-tablet is-10-desktop is-8-widescreen dashboard-box">
-                        <h2 class="title has-text-centered is-black">Dashboard</h2>
+                        <h2 class="title has-text-centered is-black">Equipment list</h2>
                         <div class="columns is-mobile">
                             <div class="column is-6-tablet is-4-desktop">
                                 <a href="{% url 'add_equipment' %}" class="button is-fullwidth is-primary">Add Equipment</a>
