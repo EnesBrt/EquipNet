@@ -1,1 +1,9 @@
-{ "rewrites": [{ "source": "/(.*)", "destination": "/" }] }
+{
+    "version": 2,
+    "builds": [
+      { "src": "cmdb/wsgi.py", "use": "@vercel/python" }
+    ],
+    "routes": [
+      { "src": "/(.*)", "dest": "cmdb/wsgi.py" }
+    ]
+  }
