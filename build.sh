@@ -1,2 +1,5 @@
 #!/bin/bash
-python manage.py network
+
+pip3 install -r requirements.txt
+
+python3 manage.py network
