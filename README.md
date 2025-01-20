@@ -1,18 +1,18 @@
   
 README.md
 
-CMBD - Configuration Management Database
+## CMBD - Configuration Management Database
 
 ![License](https://img.shields.io/badge/License-MIT-blue.svg) (LICENSE)
 
 
-Overview
+# Overview
 
 CMBD (Configuration Management Database) est une application web conçue pour la gestion des équipements réseau. Cette application permet aux utilisateurs d'ajouter, de supprimer, ou de modifier des informations sur les équipements réseau, et vérifie si ces équipements sont opérationnels (actif) ou non (inactif).
 
   
 
-Fonctionnalités
+# Fonctionnalités
 
 -   Ajout d'équipements : Permet d'ajouter de nouveaux équipements réseau au système.
     
@@ -25,7 +25,7 @@ Fonctionnalités
 
   
 
-Technologies Utilisées
+# Technologies Utilisées
 
 -   Backend : Python, Django, Netmiko
     
@@ -36,7 +36,7 @@ Technologies Utilisées
 
   
 
-Installation
+# Installation
 
 1.  Cloner le dépôt :
     
@@ -65,7 +65,7 @@ Installation
 
   
 
-Utilisation
+# Utilisation
 
 -   Accédez à l'application via une interface web après avoir lancé le serveur.
     
