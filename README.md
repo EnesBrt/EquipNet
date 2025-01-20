@@ -72,6 +72,7 @@ Utilisation
 -   Utilisez les formulaires ou les interfaces graphiques pour gérer les équipements réseau.
     
 
+Vous pouvez voir une démo en direct de l'application [ici](https://cmbd-mu.vercel.app)
   
 
 Contribution
