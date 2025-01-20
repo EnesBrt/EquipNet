@@ -89,3 +89,9 @@ Toute contribution est la bienvenue ! Pour contribuer :
 4.  Poussez vers la branche (git push origin feature/AmazingFeature)
     
 5.  Ouvrez une Pull Request
+
+<img width="1214" alt="Capture d’écran 2025-01-20 à 10 20 54" src="https://github.com/user-attachments/assets/dae619d8-376f-4889-b8ca-852bd8205da8" />
+<img width="1229" alt="Capture d’écran 2025-01-20 à 11 06 11" src="https://github.com/user-attachments/assets/dbce7de4-296a-4a39-a514-48cb5e48e339" />
+<img width="1229" alt="Capture d’écran 2025-01-20 à 11 29 36" src="https://github.com/user-attachments/assets/1c0bab2d-7277-4ce2-b204-b91044cf3c37" />
+<img width="1229" alt="Capture d’écran 2025-01-20 à 11 05 54" src="https://github.com/user-attachments/assets/8293346a-adba-4d13-bf99-a50a0c13b595" />
+<img width="1229" alt="Capture d’écran 2025-01-20 à 10 22 05" src="https://github.com/user-attachments/assets/674871d0-067b-44bf-b2c5-e27d984cca88" />
