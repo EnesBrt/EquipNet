@@ -73,23 +73,6 @@ Utilisation
     
 
 Vous pouvez voir une démo en direct de l'application [ici](https://cmbd-mu.vercel.app)
-  
-
-Contribution
-
-Toute contribution est la bienvenue ! Pour contribuer :
-
-  
-
-1.  Fork le référentiel
-    
-2.  Créez votre branche de fonctionnalité (git checkout -b feature/AmazingFeature)
-    
-3.  Committez vos changements (git commit -m 'Add some AmazingFeature')
-    
-4.  Poussez vers la branche (git push origin feature/AmazingFeature)
-    
-5.  Ouvrez une Pull Request
 
 <img width="1214" alt="Capture d’écran 2025-01-20 à 10 20 54" src="https://github.com/user-attachments/assets/dae619d8-376f-4889-b8ca-852bd8205da8" />
 <img width="1229" alt="Capture d’écran 2025-01-20 à 11 06 11" src="https://github.com/user-attachments/assets/dbce7de4-296a-4a39-a514-48cb5e48e339" />
