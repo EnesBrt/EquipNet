@@ -1,4 +1,3 @@
-# Configuration de Django
 import os
 import uvicorn
 
