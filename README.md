@@ -1,14 +1,14 @@
   
 README.md
 
-# CMBD - Configuration Management Database
+# EquipNet CMBD - Configuration Management Database
 
 ![License](https://img.shields.io/badge/License-MIT-blue.svg) (LICENSE)
 
 
 ### Overview
 
-CMBD (Configuration Management Database) est une application web conçue pour la gestion des équipements réseau. Cette application permet aux utilisateurs d'ajouter, de supprimer, ou de modifier des informations sur les équipements réseau, et vérifie si ces équipements sont opérationnels (actif) ou non (inactif).
+EquipNet est une application web conçue pour la gestion des équipements réseau. Cette application permet aux utilisateurs d'ajouter, de supprimer, ou de modifier des informations sur les équipements réseau, et vérifie si ces équipements sont opérationnels (actif) ou non (inactif).
 
   
 
