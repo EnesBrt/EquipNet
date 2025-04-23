@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="equipment-update-container">
+    <div class="columns">
+        <div class="column is-8 is-offset-2">
+            <!-- Navigation breadcrumb -->
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li><a href="{% url 'equipments:equipments_list' %}">Equipments</a></li>
+                    <li><a href="{% url 'equipments:equipment_detail' equipment.pk %}">{{ equipment.device_name }}</a></li>
+                    <li class="is-active"><a href="#" aria-current="page">Update</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Update equipment card -->
+            <div class="card equipment-update-card">
+                <header class="card-header">
+                    <p class="card-header-title is-centered">
+                        <span class="icon mr-2 has-text-info">
+                            <i class="fas fa-edit"></i>
+                        </span>
+                        Update Equipment
+                    </p>
+                </header>
+                
+                <div class="card-content">
+                    <div class="content">
+                        <h1 class="title is-4">{{ equipment.device_name }}</h1>
+                        
+                        {% if form.errors %}
+                        <div class="notification is-danger">
+                            <button class="delete"></button>
+                            Please correct the errors below.
+                        </div>
+                        {% endif %}
+                        
+                        <form method="post" class="equipment-update-form">
+                            {% csrf_token %}
+                            
+                            {% for field in form %}
+                            <div class="field">
+                                <label class="label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                <div class="control {% if field.field.widget.input_type == 'text' or field.field.widget.input_type == 'select' %}has-icons-left{% endif %}">
+                                    {{ field }}
+                                    {% if field.name == 'device_name' %}
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-server"></i>
+                                    </span>
+                                    {% elif field.name == 'host' %}
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-network-wired"></i>
+                                    </span>
+                                    {% elif field.name == 'device_type' %}
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-cubes"></i>
+                                    </span>
+                                    {% endif %}
+                                </div>
+                                {% if field.errors %}
+                                <p class="help is-danger">{{ field.errors.0 }}</p>
+                                {% endif %}
+                                {% if field.help_text %}
+                                <p class="help">{{ field.help_text|safe }}</p>
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                            
+                            <div class="field is-grouped">
+                                <div class="control">
+                                    <button type="submit" class="button is-info">
+                                        <span class="icon">
+                                            <i class="fas fa-save"></i>
+                                        </span>
+                                        <span>Save Changes</span>
+                                    </button>
+                                </div>
+                                <div class="control">
+                                    <a href="{% url 'equipments:equipment_detail' equipment.pk %}" class="button is-light">
+                                        <span class="icon">
+                                            <i class="fas fa-times"></i>
+                                        </span>
+                                        <span>Cancel</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Add Bulma classes to form inputs
+        document.querySelectorAll('input[type=text], input[type=email], input[type=number], input[type=url], textarea, select').forEach(el => {
+            if (el.tagName === 'SELECT') {
+                el.classList.add('select');
+            } else {
+                el.classList.add('input');
+            }
+        });
+        
+        // Make select elements display properly with Bulma
+        document.querySelectorAll('select').forEach(select => {
+            const parent = select.parentNode;
+            if (!parent.classList.contains('select')) {
+                const wrapper = document.createElement('div');
+                wrapper.classList.add('select');
+                parent.insertBefore(wrapper, select);
+                wrapper.appendChild(select);
+            }
+        });
+        
+        // Delete notification functionality
+        (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+            const $notification = $delete.parentNode;
+            $delete.addEventListener('click', () => {
+                $notification.parentNode.removeChild($notification);
+            });
+        });
+    });
+</script>
+
+{% endblock %}

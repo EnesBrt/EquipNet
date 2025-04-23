@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="login-container">
+    <div class="box login-box">
+        <h1 class="title is-3 has-text-centered">Login</h1>
+        
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="notification {% if message.tags == 'error' %}is-danger{% else %}is-info{% endif %}">
+                <button class="delete"></button>
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <form method="POST" class="login-form">
+            {% csrf_token %}
+            <div class="field">
+                <label class="label" for="username">Username</label>
+                <div class="control has-icons-left">
+                    <input id="username" class="input" type="text" name="username" placeholder="Your username" required>
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user"></i>
+                    </span>
+                </div>
+            </div>
+            
+            <div class="field">
+                <label class="label" for="password">Password</label>
+                <div class="control has-icons-left">
+                    <input id="password" class="input" type="password" name="password" placeholder="Your password" required>
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                </div>
+            </div>
+            
+            <div class="field">
+                <div class="control">
+                    <button class="button is-primary is-fullwidth" type="submit">
+                        <span class="icon">
+                            <i class="fas fa-sign-in-alt"></i>
+                        </span>
+                        <span>Login</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="has-text-centered mt-4">
+                <p>Don't have an account? <a href="{% url 'accounts:signup' %}">Sign up</a></p>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+            const $notification = $delete.parentNode;
+            $delete.addEventListener('click', () => {
+                $notification.parentNode.removeChild($notification);
+            });
+        });
+    });
+</script>
+
+{% endblock %}

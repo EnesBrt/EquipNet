@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="equipment-detail-container">
+    <div class="columns">
+        <div class="column is-8 is-offset-2">
+            <!-- Navigation breadcrumb -->
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li><a href="{% url 'equipments:equipments_list' %}">Equipments</a></li>
+                    <li class="is-active"><a href="#" aria-current="page">{{ equipment.device_name }}</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Equipment details card -->
+            <div class="card equipment-detail-card">
+                <header class="card-header">
+                    <p class="card-header-title is-centered">
+                        <span class="icon mr-2">
+                            <i class="fas fa-server"></i>
+                        </span>
+                        Equipment Details
+                    </p>
+                </header>
+                
+                <div class="card-content">
+                    <div class="content">
+                        <h1 class="title is-3">{{ equipment.device_name }}</h1>
+                        
+                        <div class="field">
+                            <label class="label">Type</label>
+                            <div class="control">
+                                <div class="tags has-addons">
+                                    <span class="tag is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-cubes"></i>
+                                        </span>
+                                    </span>
+                                    <span class="tag is-info">{{ equipment.device_type }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="field">
+                            <label class="label">Host</label>
+                            <div class="control">
+                                <div class="tags has-addons">
+                                    <span class="tag is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-network-wired"></i>
+                                        </span>
+                                    </span>
+                                    <span class="tag is-link">{{ equipment.host }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="field">
+                            <label class="label">Status</label>
+                            <div class="control">
+                                <div class="tags has-addons">
+                                    <span class="tag is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-signal"></i>
+                                        </span>
+                                    </span>
+                                    {% if equipment.status == 'online' %}
+                                        <span class="tag is-success">{{ equipment.status }}</span>
+                                    {% else %}
+                                        <span class="tag is-danger">{{ equipment.status }}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        {% if equipment.connected_equipments.all %}
+                        <div class="field">
+                            <label class="label">Connected Equipments</label>
+                            <div class="connected-equipment-list">
+                                {% for connected in equipment.connected_equipments.all %}
+                                <div class="connected-item">
+                                    <a href="{% url 'equipments:equipment_detail' connected.pk %}" class="tag is-link">
+                                        <span class="icon">
+                                            <i class="fas fa-link"></i>
+                                        </span>
+                                        <span>{{ connected.device_name }}</span>
+                                    </a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <footer class="card-footer">
+                    <a href="{% url 'equipments:equipment_update' equipment.pk %}" class="card-footer-item">
+                        <span class="icon">
+                            <i class="fas fa-edit"></i>
+                        </span>
+                        <span>Edit</span>
+                    </a>
+                    <a href="{% url 'equipments:equipment_delete' equipment.pk %}" class="card-footer-item has-text-danger">
+                        <span class="icon">
+                            <i class="fas fa-trash"></i>
+                        </span>
+                        <span>Delete</span>
+                    </a>
+                    <a href="{% url 'equipments:equipments_list' %}" class="card-footer-item">
+                        <span class="icon">
+                            <i class="fas fa-arrow-left"></i>
+                        </span>
+                        <span>Back to List</span>
+                    </a>
+                </footer>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

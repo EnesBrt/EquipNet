@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Connect/Disconnect Equipment</h2>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <form method="post">
+                {% csrf_token %}
+                <div class="d-grid gap-2">
+                    <button type="submit" name="action" value="connect" class="btn btn-success">
+                        Connect All Equipment
+                    </button>
+                    <button type="submit" name="action" value="disconnect" class="btn btn-danger">
+                        Disconnect All Equipment
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %} 

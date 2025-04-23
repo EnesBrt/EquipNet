@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="signup-container">
+    <div class="box signup-box">
+        <h1 class="title is-3 has-text-centered">Create Your Account</h1>
+        
+        {% if form.errors %}
+        <div class="notification is-danger">
+            <button class="delete"></button>
+            Please correct the errors below.
+        </div>
+        {% endif %}
+        
+        <form method="post" class="signup-form">
+            {% csrf_token %}
+            
+            {% for field in form %}
+            <div class="field">
+                <label class="label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                <div class="control {% if field.name == 'username' or field.name == 'email' %}has-icons-left{% endif %}">
+                    {{ field }}
+                    {% if field.name == 'username' %}
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user"></i>
+                    </span>
+                    {% elif field.name == 'email' %}
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-envelope"></i>
+                    </span>
+                    {% endif %}
+                </div>
+                {% if field.errors %}
+                <p class="help is-danger">{{ field.errors.0 }}</p>
+                {% endif %}
+                {% if field.help_text %}
+                <p class="help">{{ field.help_text|safe }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+            
+            <div class="field">
+                <div class="control">
+                    <button type="submit" class="button is-primary is-fullwidth">
+                        <span class="icon">
+                            <i class="fas fa-user-plus"></i>
+                        </span>
+                        <span>Sign Up</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="has-text-centered mt-4">
+                <p>Already have an account? <a href="{% url 'accounts:login' %}">Log in</a></p>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Add Bulma classes to form inputs
+        document.querySelectorAll('input[type=text], input[type=email], input[type=password]').forEach(el => {
+            el.classList.add('input');
+        });
+        
+        // Delete notification functionality
+        (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+            const $notification = $delete.parentNode;
+            $delete.addEventListener('click', () => {
+                $notification.parentNode.removeChild($notification);
+            });
+        });
+    });
+</script>
+
+{% endblock %}

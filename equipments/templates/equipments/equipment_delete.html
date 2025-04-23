@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="delete-equipment-container">
+    <div class="columns">
+        <div class="column is-6 is-offset-3">
+            <!-- Navigation breadcrumb -->
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li><a href="{% url 'equipments:equipments_list' %}">Equipments</a></li>
+                    <li><a href="{% url 'equipments:equipment_detail' equipment.pk %}">{{ equipment.device_name }}</a></li>
+                    <li class="is-active"><a href="#" aria-current="page">Delete</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Delete confirmation card -->
+            <div class="card delete-confirmation-card">
+                <header class="card-header">
+                    <p class="card-header-title is-centered">
+                        <span class="icon mr-2 has-text-danger">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </span>
+                        Confirm Deletion
+                    </p>
+                </header>
+                
+                <div class="card-content">
+                    <div class="content has-text-centered">
+                        <h1 class="title is-4">Delete Equipment: {{ equipment.device_name }}</h1>
+                        <p class="delete-warning">
+                            <span class="icon has-text-danger">
+                                <i class="fas fa-exclamation-circle"></i>
+                            </span>
+                            Are you sure you want to delete this equipment? This action cannot be undone.
+                        </p>
+                        
+                        <div class="equipment-summary">
+                            <div class="tags is-centered">
+                                <span class="tag is-medium">
+                                    <span class="icon"><i class="fas fa-server"></i></span>
+                                    <span>{{ equipment.device_name }}</span>
+                                </span>
+                                <span class="tag is-medium is-info">
+                                    <span class="icon"><i class="fas fa-cubes"></i></span>
+                                    <span>{{ equipment.device_type }}</span>
+                                </span>
+                                <span class="tag is-medium is-link">
+                                    <span class="icon"><i class="fas fa-network-wired"></i></span>
+                                    <span>{{ equipment.host }}</span>
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <form method="post" class="delete-form">
+                            {% csrf_token %}
+                            <div class="field is-grouped is-grouped-centered">
+                                <div class="control">
+                                    <button type="submit" class="button is-danger is-medium">
+                                        <span class="icon">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                                        <span>Delete Permanently</span>
+                                    </button>
+                                </div>
+                                <div class="control">
+                                    <a href="{% url 'equipments:equipment_detail' equipment.pk %}" class="button is-light is-medium">
+                                        <span class="icon">
+                                            <i class="fas fa-times"></i>
+                                        </span>
+                                        <span>Cancel</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

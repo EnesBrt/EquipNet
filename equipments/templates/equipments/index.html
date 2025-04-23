@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1 class="title is-2">Equipments</h1>
+</div>
+
+{% if request.user.is_authenticated %}
+
+    <div class="user-actions">
+        <a href="{% url 'accounts:logout' %}" class="btn btn-secondary">
+            <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
+            <span>Logout</span>
+        </a>
+        <a href="{% url 'equipments:connect_equipments' %}" class="btn btn-primary">
+            <span class="icon"><i class="fas fa-plug"></i></span>
+            <span>Connect equipments</span>
+        </a>
+        <a href="{% url 'equipments:disconnect_equipments' %}" class="btn btn-secondary">
+            <span class="icon"><i class="fas fa-unlink"></i></span>
+            <span>Disconnect equipments</span>
+        </a>
+    </div>
+
+    {% if messages %}
+        <div class="message-container">
+            {% for message in messages %}
+                <div class="system-message">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="equipment-list">
+        {% for equipment in equipments %}
+            <div class="equipment-card">
+                <div class="equipment-content">
+                    <p class="has-text-weight-bold">{{ equipment.device_name }}</p>
+                    <p><strong>Type:</strong> {{ equipment.device_type }}</p>
+                    <p><strong>Host:</strong> {{ equipment.host }}</p>
+                    
+                    {% if equipment.status == 'online' %}
+                        <span class="status-indicator status-online">
+                            <span class="icon"><i class="fas fa-circle"></i></span>
+                            <span>{{ equipment.status }}</span>
+                        </span>
+                    {% else %}
+                        <span class="status-indicator status-offline">
+                            <span class="icon"><i class="fas fa-circle"></i></span>
+                            <span>{{ equipment.status }}</span>
+                        </span>
+                    {% endif %}
+                    
+                    <div class="equipment-actions">
+                        <a href="{% url 'equipments:equipment_detail' equipment.pk %}" class="btn btn-primary">
+                            <span class="icon"><i class="fas fa-eye"></i></span>
+                            <span>View detail</span>
+                        </a>
+                        <a href="{% url 'equipments:equipment_update' equipment.pk %}" class="btn btn-secondary">
+                            <span class="icon"><i class="fas fa-edit"></i></span>
+                            <span>Update</span>
+                        </a>
+                        <a href="{% url 'equipments:equipment_delete' equipment.pk %}" class="btn btn-danger">
+                            <span class="icon"><i class="fas fa-trash"></i></span>
+                            <span>Delete</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% else %}
+
+    <div class="auth-section">
+        <p class="subtitle is-4">Please login to view this page</p>
+        <div class="buttons is-centered">
+            <a href="{% url 'accounts:login' %}" class="btn btn-primary">
+                <span class="icon"><i class="fas fa-sign-in-alt"></i></span>
+                <span>Login</span>
+            </a>
+            <a href="{% url 'accounts:signup' %}" class="btn btn-secondary">
+                <span class="icon"><i class="fas fa-user-plus"></i></span>
+                <span>Signup</span>
+            </a>
+        </div>
+    </div>
+
+{% endif %}
+{% endblock %}
