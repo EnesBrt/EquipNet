@@ -11,11 +11,11 @@ EquipNet is a comprehensive Configuration Management Database (CMDB) system buil
 
 ## Technology Stack
 
-- Python 3.x
-- Django 5.1
+- Python
+- Django
 - PostgreSQL
-- HTML/CSS/JavaScript
-- Bootstrap for styling
+- HTML/CSS
+- Bulma for styling
 
 ## Installation
 
