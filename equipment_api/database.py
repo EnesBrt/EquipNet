@@ -3,7 +3,6 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 
-
 # Configuration de la connexion à la base de données
 # Format: postgresql://utilisateur:motdepasse@hote:port/nom_base
 DATABASE_URL = "postgresql://admin:123456@localhost:5432/cmdb"
@@ -20,6 +19,8 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
 # Fonction pour obtenir une session de base de données
+
+
 def get_db():
     db = SessionLocal()
     try:

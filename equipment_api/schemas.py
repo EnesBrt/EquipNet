@@ -2,9 +2,9 @@ from pydantic import BaseModel
 from typing import Optional
 
 
-
 # Modèles Pydantic pour la validation des données
 # Ces modèles définissent la structure des données pour l'API
+
 
 # Modèle de base avec tous les champs
 class EquipmentBase(BaseModel):
@@ -17,9 +17,13 @@ class EquipmentBase(BaseModel):
     secret: Optional[str] = None  # Champ optionnel
     status: str = "Disconnected"  # Champ avec valeur par défaut
 
+
 # Modèle pour la création d'un équipement
+
+
 class EquipmentCreate(EquipmentBase):
     pass
+
 
 class EquipmentUpdate(EquipmentBase):
     device_name: Optional[str] = None
@@ -31,9 +35,13 @@ class EquipmentUpdate(EquipmentBase):
     secret: Optional[str] = None
     status: Optional[str] = None
 
+
 # Modèle pour la réponse API, inclut l'ID
+
+
 class EquipmentResponse(EquipmentBase):
     id: int
 
     class Config:
-        from_attributes = True  # Permet la conversion automatique entre ORM et Pydantic (Pydantic V2)
+        # Permet la conversion automatique entre ORM et Pydantic (Pydantic V2)
+        from_attributes = True

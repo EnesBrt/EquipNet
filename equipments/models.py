@@ -9,20 +9,13 @@ class Equipments(models.Model):
     password = models.CharField(max_length=255)
     port = models.IntegerField(default=50, blank=True)
     secret = models.CharField(max_length=255, blank=True)
-    
-    
+
     STATUS = [
         ("connected", "Connected"),
         ("disconnected", "Disconnected"),
     ]
-    
+
     status = models.CharField(max_length=255, choices=STATUS, default="Disconnected")
-    
-    
+
     def __str__(self):
         return self.device_name
-    
-    
-    
-    
-    

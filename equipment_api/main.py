@@ -18,11 +18,11 @@ EquipmentBase (Base DTO)
 - Sécurité :
     - Contrôle précis des données exposées
     - Protection contre l'injection de données non désirées
-    
+
 - Flexibilité :
     - Facile d'ajouter de nouveaux DTOs pour des cas d'utilisation spécifiques
     - Possibilité de modifier la structure des données sans affecter la base de données
-    
+
 - Maintenabilité :
     - Code plus organisé et plus facile à maintenir
     - Séparation claire entre la logique métier et la persistance des données
@@ -31,17 +31,27 @@ DTO (Data Transfer Object) :
 - EquipmentBase : Modèle de base avec tous les champs
 - EquipmentCreate : Modèle pour la création d'un équipement
 - EquipmentResponse : Modèle pour la réponse API, inclut l'ID
-
-
-
 """
 
 # Importation des modules nécessaires
-from fastapi import Depends, FastAPI, HTTPException, APIRouter  # FastAPI pour créer l'API, HTTPException pour gérer les erreurs
+from fastapi import (
+    Depends,
+    FastAPI,
+    HTTPException,
+    APIRouter,
+)  # FastAPI pour créer l'API, HTTPException pour gérer les erreurs
 from fastapi.middleware.cors import CORSMiddleware  # Import correct pour CORSMiddleware
 from requests import Session
-from sqlalchemy import create_engine, Column, Integer, String, Enum  # SQLAlchemy pour la gestion de la base de données
-from sqlalchemy.ext.declarative import declarative_base  # Pour créer les modèles de base de données
+from sqlalchemy import (
+    create_engine,
+    Column,
+    Integer,
+    String,
+    Enum,
+)  # SQLAlchemy pour la gestion de la base de données
+from sqlalchemy.ext.declarative import (
+    declarative_base,
+)  # Pour créer les modèles de base de données
 from sqlalchemy.orm import sessionmaker  # Pour créer des sessions de base de données
 from pydantic import BaseModel  # Pour la validation des données
 from typing import Optional
@@ -52,7 +62,10 @@ from router.equipment_router import router
 # Création de la base de données
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI(title="API de gestion des équipements", description="API pour gérer les équipements de l'entreprise")
+app = FastAPI(
+    title="API de gestion des équipements",
+    description="API pour gérer les équipements de l'entreprise",
+)
 
 # Configuration des CORS (Cross-Origin Resource Sharing), fonction: permettre aux requêtes d'être envoyées depuis n'importe quelle origine (domaine)
 app.add_middleware(
@@ -69,8 +82,10 @@ app.include_router(router)
 
 @app.get("/")
 def read_root():
-    return {"message": "Bienvenue sur l'API de gestion des équipements",
-            "documentation": "http://localhost:8000/docs"}
+    return {
+        "message": "Bienvenue sur l'API de gestion des équipements",
+        "documentation": "http://localhost:8000/docs",
+    }
 
 
 @app.get("/health")
