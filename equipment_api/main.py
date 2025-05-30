@@ -55,7 +55,7 @@ from sqlalchemy.ext.declarative import (
 from sqlalchemy.orm import sessionmaker  # Pour créer des sessions de base de données
 from pydantic import BaseModel  # Pour la validation des données
 from typing import Optional
-import uvicorn  # Pour définir des types optionnels
+import uvicorn  # Pour lancer le serveur de développement
 from database import Base, engine
 from router.equipment_router import router
 
@@ -67,7 +67,8 @@ app = FastAPI(
     description="API pour gérer les équipements de l'entreprise",
 )
 
-# Configuration des CORS (Cross-Origin Resource Sharing), fonction: permettre aux requêtes d'être envoyées depuis n'importe quelle origine (domaine)
+# Configuration des CORS (Cross-Origin Resource Sharing)
+# Fonction: permettre aux requêtes d'être envoyées depuis n'importe quelle origine (domaine)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],

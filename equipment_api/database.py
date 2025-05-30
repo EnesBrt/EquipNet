@@ -18,9 +18,8 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 # Création de la classe de base pour les modèles
 Base = declarative_base()
 
+
 # Fonction pour obtenir une session de base de données
-
-
 def get_db():
     db = SessionLocal()
     try:
